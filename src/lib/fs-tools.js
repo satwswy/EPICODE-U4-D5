@@ -6,10 +6,12 @@ const { readJSON, writeJSON, writeFile } = fs
 
 const dataFolderPath = join(dirname(fileURLToPath(import.meta.url)), "../data")
 
+const reviewsJSONPath = join(dataFolderPath, "reviews.json")
 const productsJSONPath = join(dataFolderPath, "products.json")
 const productsPublicFolderPath = join(process.cwd(), "./public/img/products")
 
-
+export const getReviews = () => readJSON(reviewsJSONPath)
+export const writeReviews = reviewsArray => writeJSON(reviewsJSONPath, reviewsArray)
 export const getProducts = () => readJSON(productsJSONPath)
 export const writeProducts = productsArray => writeJSON(productsJSONPath, productsArray)
 export const saveProductsUploades = (fileName, contentAsABuffer) => writeFile(join(productsPublicFolderPath, fileName), contentAsABuffer)
