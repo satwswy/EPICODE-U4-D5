@@ -1,7 +1,9 @@
 import express from "express";
 import uniqid from "uniqid";
-import { getProducts, writeProducts } from "../../lib/fs-tools.js";
+import { getProducts, writeProducts,saveProductsUploades } from "../../lib/fs-tools.js";
 import { checkProductSchema, checkValidationResult } from "./validation.js";
+import multer from "multer"
+import { extname } from "path"
 
 
 
@@ -89,7 +91,16 @@ productsRouter.post("/", checkProductSchema, checkValidationResult, async (req, 
   })
 
 
-
+  productsRouter.post("/:productId/upload", multer().single("upload"), async (req, res, next) => {
+    try {
+        console.log("FILE: ", req.file)
+        const fileName = req.params.productId + extname(req.file.originalname)
+        await saveProductsUploades(fileName, req.file.buffer)
+        res.send("UPLOADED")
+    } catch (error) {
+      next(error)
+    }
+  })
 
 
 
