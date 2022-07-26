@@ -6,9 +6,15 @@ import reviewsRouter from "./apis/reviews/index.js";
 
 
 const server = express();
-const port = 3001;
+const port = process.env.PORT || 3001
 
-server.use(cors());
+const whitelist = ["http://localhost:3000", "https://mywonderfulfe.com"]
+
+server.use(cors({origin: (origin, callback) => {
+
+}}));
+
+
 server.use(express.json());
 
 
@@ -23,4 +29,6 @@ server.use("/products/:productId/reviews", reviewsRouter)
 
 
 
-server.listen(port,()=>console.log("Server is running on port : ", port));
+server.listen(port,()=>{
+    console.log("Server is running on port : ", port)
+});
