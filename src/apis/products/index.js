@@ -8,7 +8,17 @@ import {pipeline} from "stream"
 import createHttpError from "http-errors";
 import {createGzip} from "zlib"
 import { getPDFReadableStream } from "../../lib/pdf-tools.js";
+import {v2 as cloudinary} from 'cloudinary'
+import {CloudinaryStorage} from 'multer-storage-cloudinary'
 
+const cloudinaryUploader = multer({
+  storage:new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "july22/products"
+  },
+}) , limits: {fileSize: 1024*1024},
+}).single("avatar")
 
 const productsRouter = express.Router()
 
@@ -137,5 +147,14 @@ productsRouter.get("/new/PDF", async (req, res, next)=>{
   }
 })
 
+
+productsRouter.post("/new/cloudinary", cloudinaryUploader, async (req,res,next)=>{
+  try {
+    console.log("REQ FILE ", req.file)
+    res.send()
+  } catch (error) {
+    next(error)
+  }
+})
 
 export default productsRouter
