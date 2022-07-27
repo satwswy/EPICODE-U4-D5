@@ -1,10 +1,13 @@
 import express from "express";
 import uniqid from "uniqid";
-import { getProducts, writeProducts,saveProductsUploades } from "../../lib/fs-tools.js";
+import { getProducts, writeProducts,saveProductsUploades, getProductsReadableStream } from "../../lib/fs-tools.js";
 import { checkProductSchema, checkValidationResult } from "./validation.js";
 import multer from "multer"
 import { extname } from "path"
-
+import {pipeline} from "stream"
+import createHttpError from "http-errors";
+import {createGzip} from "zlib"
+import { getPDFReadableStream } from "../../lib/pdf-tools.js";
 
 
 const productsRouter = express.Router()
@@ -104,8 +107,35 @@ productsRouter.post("/", checkProductSchema, checkValidationResult, async (req, 
   })
 
 
+productsRouter.get("/new/productsJSON", (req,res,next) => {
+  try {
 
+    res.setHeader("Content-Disposition", "attachment; filename=books.json.gz")
+    const source = getProductsReadableStream()
+    const destination = res
+    const transform = createGzip()
+    pipeline(source, transform, destination, err => {
+      if(err) console.log(err)
+    })
 
+  } catch (error) {
+    next(error)
+  }
+})
+
+productsRouter.get("/new/PDF", async (req, res, next)=>{
+  try {
+    const productsList = await getProducts()
+    res.setHeader("Content-Disposition", "attachment; filename=books.pdf")
+    const source = getPDFReadableStream(productsList)
+    const destination = res
+    pipeline(source, destination, err => {
+      if(err) console.log(err)
+    })
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 
 export default productsRouter
