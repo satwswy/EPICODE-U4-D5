@@ -13,7 +13,7 @@ const whitelist = [process.env.FE_DEV_URL, process.env.FE_PROD_URL]
 
 server.use(cors({origin: (origin, corsNext) => {
     console.log("ORIGIN: ", origin)
-    console.log(whitelist)
+    
 if (!origin || whitelist.indexOf(origin)!== -1) {
     corsNext(null, true)
 } else {
