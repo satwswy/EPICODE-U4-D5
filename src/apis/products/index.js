@@ -33,6 +33,7 @@ productsRouter.post("/", checkProductSchema, checkValidationResult, async (req, 
         res.send(products)
       
     } catch (error) {
+      console.log(error)
       next(error) 
     }
   })
