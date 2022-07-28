@@ -1,1 +1,112 @@
-[{"name":"tablet","description":"tablet1","brand":"nokia","price":100,"category":"smartphones","createdAt":"2022-07-22T10:29:01.667Z","id":"3114fn1col5wbl8bo"},{"name":"tablet3","description":"3tablet2","brand":"nokia23","price":10023,"category":"smartphones23","createdAt":"2022-07-22T15:15:17.121Z","id":"3114fnbasl5wltczn","updatedAt":"2022-07-22T15:15:40.741Z"}]
+[
+  {
+    "name": "tablet",
+    "description": "tablet1",
+    "brand": "nokia",
+    "price": 100,
+    "category": "smartphones",
+    "createdAt": "2022-07-22T10:29:01.667Z",
+    "id": "3114fn1col5wbl8bo"
+  },
+  {
+    "name": "tablet",
+    "description": "tablet1",
+    "brand": "nokia",
+    "price": 100,
+    "category": "smartphones",
+    "createdAt": "2022-07-22T10:29:01.667Z",
+    "id": "3114fn1col5wbl8bo"
+  },
+  {
+    "name": "tablet",
+    "description": "tablet1",
+    "brand": "nokia",
+    "price": 100,
+    "category": "smartphones",
+    "createdAt": "2022-07-22T10:29:01.667Z",
+    "id": "3114fn1col5wbl8bo"
+  },
+  {
+    "name": "tablet",
+    "description": "tablet1",
+    "brand": "nokia",
+    "price": 100,
+    "category": "smartphones",
+    "createdAt": "2022-07-22T10:29:01.667Z",
+    "id": "3114fn1col5wbl8bo"
+  },
+  {
+    "name": "tablet",
+    "description": "tablet1",
+    "brand": "nokia",
+    "price": 100,
+    "category": "smartphones",
+    "createdAt": "2022-07-22T10:29:01.667Z",
+    "id": "3114fn1col5wbl8bo"
+  },
+  {
+    "name": "tablet",
+    "description": "tablet1",
+    "brand": "nokia",
+    "price": 100,
+    "category": "smartphones",
+    "createdAt": "2022-07-22T10:29:01.667Z",
+    "id": "3114fn1col5wbl8bo"
+  },
+  {
+    "name": "tablet",
+    "description": "tablet1",
+    "brand": "nokia",
+    "price": 100,
+    "category": "smartphones",
+    "createdAt": "2022-07-22T10:29:01.667Z",
+    "id": "3114fn1col5wbl8bo"
+  },
+  {
+    "name": "tablet",
+    "description": "tablet1",
+    "brand": "nokia",
+    "price": 100,
+    "category": "smartphones",
+    "createdAt": "2022-07-22T10:29:01.667Z",
+    "id": "3114fn1col5wbl8bo"
+  },
+  {
+    "name": "tablet",
+    "description": "tablet1",
+    "brand": "nokia",
+    "price": 100,
+    "category": "smartphones",
+    "createdAt": "2022-07-22T10:29:01.667Z",
+    "id": "3114fn1col5wbl8bo"
+  },
+  {
+    "name": "tablet",
+    "description": "tablet1",
+    "brand": "nokia",
+    "price": 100,
+    "category": "smartphones",
+    "createdAt": "2022-07-22T10:29:01.667Z",
+    "id": "3114fn1col5wbl8bo"
+  },
+  {
+    "name": "tablet",
+    "description": "tablet1",
+    "brand": "nokia",
+    "price": 100,
+    "category": "smartphones",
+    "createdAt": "2022-07-22T10:29:01.667Z",
+    "id": "3114fn1col5wbl8bo"
+  },
+  
+  {
+    "name": "tablet3",
+    "description": "3tablet2",
+    "brand": "nokia23",
+    "price": 10023,
+    "category": "smartphones23",
+    "createdAt": "2022-07-22T15:15:17.121Z",
+    "id": "3114fnbasl5wltczn",
+    "updatedAt": "2022-07-22T15:15:40.741Z"
+  }
+]

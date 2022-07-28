@@ -7,9 +7,10 @@ import { extname } from "path"
 import {pipeline} from "stream"
 import createHttpError from "http-errors";
 import {createGzip} from "zlib"
-import { getPDFReadableStream } from "../../lib/pdf-tools.js";
+import { generatePDFAsync, getPDFReadableStream } from "../../lib/pdf-tools.js";
 import {v2 as cloudinary} from 'cloudinary'
 import {CloudinaryStorage} from 'multer-storage-cloudinary'
+import json2csv from "json2csv"
 
 const cloudinaryUploader = multer({
   storage:new CloudinaryStorage({
@@ -120,7 +121,7 @@ productsRouter.post("/", checkProductSchema, checkValidationResult, async (req, 
 productsRouter.get("/new/productsJSON", (req,res,next) => {
   try {
 
-    res.setHeader("Content-Disposition", "attachment; filename=books.json.gz")
+    res.setHeader("Content-Disposition", "attachment; filename=products.json.gz")
     const source = getProductsReadableStream()
     const destination = res
     const transform = createGzip()
@@ -136,14 +137,42 @@ productsRouter.get("/new/productsJSON", (req,res,next) => {
 productsRouter.get("/new/PDF", async (req, res, next)=>{
   try {
     const productsList = await getProducts()
-    res.setHeader("Content-Disposition", "attachment; filename=books.pdf")
+    res.setHeader("Content-Disposition", "attachment; filename=products.pdf")
     const source = getPDFReadableStream(productsList)
     const destination = res
     pipeline(source, destination, err => {
       if(err) console.log(err)
     })
   } catch (error) {
+    next(error)
     console.log(error)
+  }
+})
+
+productsRouter.get("/new/CSV", (req,res,next) => {
+  try {
+
+    res.setHeader("Content-Disposition", "attachment; filename=products.csv")
+    const source = getProductsReadableStream()
+    const destination = res
+    const transform = new json2csv.Transform({fields: ["name", "description", "brand"] })
+    pipeline(source, transform, destination, err => {
+      if(err) console.log(err)
+    })
+
+  } catch (error) {
+    next(error)
+  }
+})
+
+productsRouter.get("/new/asyncPDF", async (req,res,next)=>{
+  try {
+    const productsList = await getProducts()
+    const file = await generatePDFAsync(productsList)
+    // await sendEmailWithAttachment(file)
+    res.send()
+  } catch (error) {
+    next(error)
   }
 })
 
